@@ -361,8 +361,8 @@
         <div class="bar-indicator" id="barIndicator" style="left:50%"></div>
       </div>
       <div class="bar-labels">
-        <span class="lbl-cool">🔥 Too Hot</span>
-        <span class="lbl-warm">❄️ Too Cold</span>
+        <span class="lbl-cool">❄️ Too Cold</span>
+        <span class="lbl-warm">🔥 Too Hot</span>
       </div>
       <div class="consensus-verdict verdict-neutral" id="verdict">Waiting for data…</div>
     </div>
@@ -521,8 +521,7 @@
 
     // Consensus bar (hot vs cold only)
     const extreme = u + d;
-    $('barIndicator').style.left = (extreme > 0 ? (u / extreme) * 100 : 50) + '%';
-
+    $('barIndicator').style.left = (extreme > 0 ? (d / extreme) * 100 : 50) + '%';
     // Verdict
     const verdict = $('verdict');
     if (total === 0) {
