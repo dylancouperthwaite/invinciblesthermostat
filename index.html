@@ -367,7 +367,7 @@
     </div>
 
     <div class="reset-row">
-      <button class="reset-btn" onclick="adminAction(doReset)">Reset Day's Votes</button>
+      <button class="reset-btn" onclick="withAdminHash(doReset)">Reset Day's Votes</button>
     </div>
 
     <div class="divider"></div>
@@ -688,14 +688,11 @@
   }
 
   // ── Admin: reset ──────────────────────────────────────────────────────────
-  function doReset() {
-    withAdminHash(hash => {
-      sendAdminRequest(hash, { type: 'reset' });
-      myVote = null; storeVote(null);
-      showToast('Votes reset for today');
-    });
+function doReset(hash) {
+    sendAdminRequest(hash, { type: 'reset' });
+    myVote = null; storeVote(null);
+    showToast('Votes reset for today');
   }
-
   // ── Admin: temperature ────────────────────────────────────────────────────
   $('btnUp').addEventListener('click', () => {
     withAdminHash(hash => {
