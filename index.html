@@ -688,9 +688,11 @@
   }
 
   // ── Admin: reset ──────────────────────────────────────────────────────────
-function doReset(hash) {
-    sendAdminRequest(hash, { type: 'reset' });
+async function doReset(hash) {
+    remote.up = 0; remote.just = 0; remote.down = 0;
     myVote = null; storeVote(null);
+    render();
+    await sendAdminRequest(hash, { type: 'reset' });
     showToast('Votes reset for today');
   }
   // ── Admin: temperature ────────────────────────────────────────────────────
