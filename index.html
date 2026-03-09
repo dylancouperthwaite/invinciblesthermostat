@@ -521,8 +521,12 @@
 
     // Consensus bar (hot vs cold only)
     const extreme = u + d;
-    $('barIndicator').style.left = (extreme > 0 ? (d / extreme) * 100 : 50) + '%';
-    // Verdict
+    // Bar position: too-cold pulls left (0%), too-hot pulls right (100%),
+    // just-right votes pull towards the centre (50%), weighted by count.
+    const centre = 50;
+    const extremePct = extreme > 0 ? (d / extreme) * 100 : centre;
+    const barPct = total > 0 ? extremePct * (extreme / total) + centre * (j / total) : centre;
+    $('barIndicator').style.left = barPct + '%';    // Verdict
     const verdict = $('verdict');
     if (total === 0) {
       verdict.textContent = 'No votes yet — be the first!';
